@@ -11,4 +11,9 @@ class City extends Model
     public $incrementing = false;
 
     protected $fillable = ['id', 'name', 'state'];
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }

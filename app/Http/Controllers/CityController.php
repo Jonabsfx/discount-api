@@ -52,12 +52,12 @@ class CityController extends Controller
             $strJsonFileContents = file_get_contents(__DIR__ . "/cities.json");
             $citiesArray = json_decode($strJsonFileContents, true);
 
-            $city = $this->entity
-                                ->create([
-                                    'id' => array_search($data['name'], $citiesArray),
-                                    'name' => $data['name'],
-                                    'state' => $data['state']
-                                ]);
+            $this->entity
+                    ->create([
+                        'id' => array_search($data['name'], $citiesArray),
+                        'name' => $data['name'],
+                        'state' => $data['state']
+                    ]);
             return response()->json(['message'=>'City created successfully'], 200);
         }
 
