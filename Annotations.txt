@@ -1,0 +1,14 @@
+Cities:
+    -   Belongs to One Group
+    -   Id, name, state
+Group:
+    -   Has Many Cities
+    -   Has One Campaign
+    -   Id, name
+Campaign:
+    - Belongs to One Group
+    - Has Many Products
+    - Attribute: Id, name (?), duration, is_active
+Product:
+    - Belongs to Many Campaigns
+    - Attribute: Id, name, description, price, discount
