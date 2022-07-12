@@ -6,18 +6,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class GroupResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
+
     public function toArray($request)
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'cities' => CityResource::collection($this->cities),
+            'cities' => CityResource::collection($this->cities()->get()),
+            'active_campaign' => new CampaignResource($this->campaigns->where('is_active' === TRUE)->first()),
 
         ];
     }

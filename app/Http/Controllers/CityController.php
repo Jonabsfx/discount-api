@@ -16,7 +16,7 @@ class CityController extends Controller
 
     private function findCity($id)
     {
-        return $this->entity->where('id', $id)->firstOrFail();
+        return $this->entity->findOrFail($id);
     }
 
     private function validatorIBGE($city, $state_name)
@@ -52,13 +52,13 @@ class CityController extends Controller
             $strJsonFileContents = file_get_contents(__DIR__ . "/cities.json");
             $citiesArray = json_decode($strJsonFileContents, true);
 
-            $this->entity
+            $response = $this->entity
                     ->create([
                         'id' => array_search($data['name'], $citiesArray),
                         'name' => $data['name'],
                         'state' => $data['state']
                     ]);
-            return response()->json(['message'=>'City created successfully'], 200);
+            return response()->json($response, 200);
         }
 
         return $this->validatorIBGE($data['name'], $data['state']);

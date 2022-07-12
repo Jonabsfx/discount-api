@@ -17,7 +17,7 @@ class GroupController extends Controller
 
     private function findGroup($id)
     {
-        return $this->entity->where('id', $id)->firstOrFail();
+        return $this->entity->findOrFail($id);
     }
     public function index()
     {
@@ -29,12 +29,12 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         if(!empty($request->name)){
-            $this->entity
+            $response = $this->entity
                     ->create([
                         'name' => $request->name
                     ]);
 
-            return response()->json(['message'=>'Group created successfully'], 200);
+            return response()->json($response, 200);
         }
 
         return response()->json(['message'=>'Group name can not be empty'], 400);
@@ -43,7 +43,6 @@ class GroupController extends Controller
     public function show($id)
     {
         $group = $this->findGroup($id);
-
         return new GroupResource($group);
     }
 
@@ -78,6 +77,17 @@ class GroupController extends Controller
 
         $response = $group->cities()->save($city);
 
-        return response()->json(['message'=>'City added successfully'], 200);
+        return response()->json($response, 200);
+    }
+
+    public function addCampaign($id, $campaign_id)
+    {
+        $campaign = \App\Models\Campaign::findorFail($campaign_id);
+        $group = $this->findGroup($id);
+
+        $response = $group->campaigns()->save($campaign);
+
+        return response()->json($response, 200);
+
     }
 }

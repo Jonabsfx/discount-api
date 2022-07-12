@@ -5,15 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Campaign extends Model
 {
     use HasFactory;
-    public $incrementing = false;
 
-    protected $fillable = ['id', 'name', 'state', 'group_id'];
+    protected $fillable = [
+        'id',
+        'name',
+        'is_active',
+        'group_id'
+    ];
 
-    public function group()
+    public function Group()
     {
         return $this->belongsTo(Group::class);
     }
+
 }
