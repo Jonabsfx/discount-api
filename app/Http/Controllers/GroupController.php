@@ -52,7 +52,9 @@ class GroupController extends Controller
         if(!empty($request->name)){
           $group = $this->findGroup($id);
 
-          $group->update($request);
+          $group->update([
+            'name' => $request->name
+          ]);
 
           return response()->json(['message'=>'Grup name updated successfully'], 200);
         }
@@ -66,7 +68,7 @@ class GroupController extends Controller
 
         $group->delete();
 
-        return response()->json(['message'=>'Group deleted successfully'], 200);
+        return response()->json(['message'=>'Group deleted successfully'], 204);
     }
 
     public function addCity($id, $city_id)

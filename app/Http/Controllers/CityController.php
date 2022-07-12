@@ -98,6 +98,6 @@ class CityController extends Controller
 
         $city->delete();
 
-        return response()->json(['message'=>'City deleted successfully'], 200);
+        return response()->json(['message'=>'City deleted successfully'], 204);
     }
 }

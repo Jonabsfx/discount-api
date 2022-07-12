@@ -98,7 +98,7 @@ class CityTest extends TestCase
         $response->assertStatus(404);
 
         $response = $this->deleteJson("{$this->endpoint}/{$city->id}");
-
+        $response->assertStatus(204);
     }
 
 
