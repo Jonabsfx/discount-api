@@ -24,6 +24,7 @@ class CityFactory extends Factory
         $citiesArray = json_decode($strJsonFileContents, true);
         $name = $citiesArray[array_rand($citiesArray)];
         $id  = array_search($name, $citiesArray);
+
         return [
             'name' => $name,
             'id' => $id,
