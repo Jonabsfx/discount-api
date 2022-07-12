@@ -16,9 +16,18 @@ class CityFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create('pt_BR');
+
+        $path = 'app/Http/Controllers/cities.json';
+
+        $strJsonFileContents = file_get_contents($path);
+        $citiesArray = json_decode($strJsonFileContents, true);
+        $name = $citiesArray[array_rand($citiesArray)];
+        $id  = array_search($name, $citiesArray);
         return [
-            'name' => $this->faker->city(),
-            'state' => $this->faker->estado()
+            'name' => $name,
+            'id' => $id,
+            'state' => $faker->state()
         ];
     }
 }
