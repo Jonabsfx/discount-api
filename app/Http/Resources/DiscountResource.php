@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CampaignResource extends JsonResource
+class DiscountResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class CampaignResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'is_active' => $this->isActive,
-            'group' => new GroupResource($this->group()->first()),
-            'discounts' => DiscountResource::collection($this->discounts()),
+            'value' => $this->value,
+            'product' => new ProductResource($this->product()->first()),
         ];
     }
 }

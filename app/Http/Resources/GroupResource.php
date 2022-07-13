@@ -14,7 +14,6 @@ class GroupResource extends JsonResource
             'name' => $this->name,
             'cities' => CityResource::collection($this->cities()->get()),
             'active_campaign' => new CampaignResource($this->campaigns->where('is_active' === TRUE)->first()),
-
         ];
     }
 }
