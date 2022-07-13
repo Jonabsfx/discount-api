@@ -16,8 +16,8 @@ class CampaignController extends Controller
     }
 
     private function findCampaign($id)
-    {   var_dump($this->entity->findOrFail($id));
-        die();
+    {   return $this->entity->findOrFail($id);
+
     }
     public function index()
     {

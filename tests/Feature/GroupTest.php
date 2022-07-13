@@ -3,11 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\{
+    Campaign,
     Group,
     City
 };
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class GroupTest extends TestCase
@@ -97,6 +96,15 @@ class GroupTest extends TestCase
         $group = Group::factory()->create();
 
         $response = $this->getJson("{$this->endpoint}/{$group->id}/add-city/{$city->id}");
+        $response->assertStatus(200);
+    }
+
+    public function test_add_Campaign()
+    {
+        $campaign = Campaign::factory()->create();
+        $group = Group::factory()->create();
+
+        $response = $this->getJson("{$this->endpoint}/{$group->id}/add-campaign/{$campaign->id}");
         $response->assertStatus(200);
     }
 }

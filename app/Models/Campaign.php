@@ -10,10 +10,8 @@ class Campaign extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'name',
-        'is_active',
-        'group_id'
+        'is_active'
     ];
 
     public function Group()
