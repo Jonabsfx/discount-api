@@ -27,7 +27,7 @@ jobs:
         run: docker-compose up -d
 
       - name: Enter the Docker image
-        run: docker-compose exec api bash
+        run: docker-compose -T exec api
 
       - name: Generate app key
         run: php artisan key:generate
