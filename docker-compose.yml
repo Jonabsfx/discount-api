@@ -52,6 +52,8 @@ services:
 
     # queue
     queue:
+        container_name: queue
+        image: jonabsfx:laravel-app
         build:
             args:
                 user: jonabsfx
