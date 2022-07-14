@@ -57,7 +57,7 @@ services:
             - ./:/var/www
         depends_on:
             - redis
-            - app
+            - api
         networks:
             - laravel
 
