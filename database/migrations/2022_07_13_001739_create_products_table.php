@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->bigInteger('price');
-            $table->float('discount')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -4,7 +4,8 @@ use App\Http\Controllers\{
     CityController,
     GroupController,
     CampaignController,
-    ProductController
+    ProductController,
+    DiscountController
 };
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -20,9 +21,9 @@ Route::get('/groups/{group_id}/add-campaign/{campaign_id}', [GroupController::cl
 
 Route::get('/campaigns/{campaign_id}/active', [CampaignController::class, 'active']);
 
-Route::post('/discount/{campaign_id}/{product_id}', [ProductController::class], 'associate_Campaign');
-Route::put('/discount/{campaign_id}/{product_id}', [ProductController::class], 'edit_associated_Campaign');
-Route::delete('/discount/{campaign_id}/{product_id}', [ProductController::class], 'remove_associated_Campaign');
+Route::post('/discount/{campaign_id}/{product_id}', [DiscountController::class, 'associate_Campaign']);
+Route::put('/discount/{campaign_id}/{product_id}', [DiscountController::class, 'edit_associated_Campaign']);
+Route::delete('/discount/{campaign_id}/{product_id}', [DiscountController::class, 'remove_associated_Campaign']);
 
 
 Route::get('/', function () {

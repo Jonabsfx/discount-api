@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Product;
+use App\Models\Campaign;
+use App\Models\Discount;
 
 class ProductTest extends TestCase
 {
@@ -47,15 +49,14 @@ class ProductTest extends TestCase
             'price' => ''
         ]);
 
-        $response->assertStatus(400);
+        $response->assertStatus(422);
     }
 
     public function test_store_Product()
     {
-
         $response = $this->postJson($this->endpoint, [
             'name' => 'Camisa do Fortaleza',
-            'description' => 'Tradição 2022',
+            'description' => 'A camisa mais bonita do mundo',
             'price' => 139.99
         ]);
 
@@ -72,11 +73,11 @@ class ProductTest extends TestCase
             'price' => 30.0
         ];
 
-        $response = $this->putJson("$this->endpoint/the-breakfast-club", $data);
+        $response = $this->putJson("$this->endpoint/camisa-do-kanal", $data);
         $response->assertStatus(404);
 
         $response = $this->putJson("$this->endpoint/{$product->id}", []);
-        $response->assertStatus(400);
+        $response->assertStatus(422);
 
         $response = $this->putJson("$this->endpoint/{$product->id}", $data);
         $response->assertStatus(200);
@@ -86,12 +87,11 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        $response = $this->deleteJson("{$this->endpoint}/the-breakfast-club");
+        $response = $this->deleteJson("{$this->endpoint}/camisa-do-kanal");
         $response->assertStatus(404);
 
         $response = $this->deleteJson("{$this->endpoint}/{$product->id}");
         $response->assertStatus(204);
 
     }
-
 }

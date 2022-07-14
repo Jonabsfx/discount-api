@@ -8,7 +8,7 @@ class CampaignFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->title()
+            'name' => $this->faker->word()
         ];
     }
 }

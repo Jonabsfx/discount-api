@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Discount extends Model
 {
     use HasFactory;
-
     protected $fillable = ['value', 'product_id', 'campaign_id'];
 
     public function product()
@@ -16,8 +15,8 @@ class Discount extends Model
         $this->belongsTo(Product::class);
     }
 
-    public function campaign()
+    public function campaigns()
     {
-        $this->belongsTo(Campaign::class);
+        $this->belongsToOne(Campaign::class);
     }
 }
