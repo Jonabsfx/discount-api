@@ -10,6 +10,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Build the Docker image
+        run: docker-compose up -d
+
+      - name: Enter the Docker image
+        run: docker-compose exec api bash
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
