@@ -49,6 +49,24 @@ services:
             - "3388:3308"
         networks:
             - laravel
+
+    # queue
+    queue:
+        container_name: queue
+        image: jonabsfx:laravel-app
+        build:
+            args:
+                user: jonabsfx
+                uid: 1918
+        restart: unless-stopped
+        command: "php artisan queue:work"
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+            - api
+        networks:
+            - laravel
     # redis
     redis:
         container_name: redis

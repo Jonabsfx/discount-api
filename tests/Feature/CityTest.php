@@ -51,7 +51,7 @@ class CityTest extends TestCase
 
     public function test_store_city()
     {
-        $path = '"/var/www/app/jsons/cities.json"';
+        $path = "/var/www/app/jsons/cities.json";
 
         $strJsonFileContents = file_get_contents($path);
         $citiesArray = json_decode($strJsonFileContents, true);
@@ -69,15 +69,9 @@ class CityTest extends TestCase
     {
         $city = City::factory()->create();
 
-        $path = "/var/www/app/jsons/cities.json";
-
-        $strJsonFileContents = file_get_contents($path);
-        $citiesArray = json_decode($strJsonFileContents, true);
-        $name = $citiesArray[array_rand($citiesArray)];
-
         $data = [
-            'name' => $name,
-            'state' => 'Ceará',
+            'name' => $city->name,
+            'state' => $city->state,
         ];
 
         $response = $this->putJson("$this->endpoint/paper-city", $data);
