@@ -51,7 +51,7 @@ class CityTest extends TestCase
 
     public function test_store_city()
     {
-        $path = 'app/Http/Controllers/cities.json';
+        $path = '"/var/www/app/jsons/cities.json"';
 
         $strJsonFileContents = file_get_contents($path);
         $citiesArray = json_decode($strJsonFileContents, true);
@@ -69,7 +69,7 @@ class CityTest extends TestCase
     {
         $city = City::factory()->create();
 
-        $path = 'app/Http/Controllers/cities.json';
+        $path = "/var/www/app/jsons/cities.json";
 
         $strJsonFileContents = file_get_contents($path);
         $citiesArray = json_decode($strJsonFileContents, true);

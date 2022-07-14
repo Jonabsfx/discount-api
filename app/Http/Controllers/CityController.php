@@ -21,10 +21,10 @@ class CityController extends Controller
 
     private function validatorIBGE($city, $state_name)
     {
-        $strJsonFileContents = file_get_contents(__DIR__ . "/cities.json");
+        $strJsonFileContents = file_get_contents("/var/www/app/jsons/cities.json");
         $citiesArray = json_decode($strJsonFileContents, true);
 
-        $strJsonFileContents = file_get_contents(__DIR__ . "/states.json");
+        $strJsonFileContents = file_get_contents("/var/www/app/jsons/states.json");
         $statesArray = json_decode($strJsonFileContents, true);
 
         if(in_array($city, $citiesArray)){
@@ -49,7 +49,7 @@ class CityController extends Controller
         $data = $request->validated();
 
         if($this->validatorIBGE($data['name'], $data['state']) === TRUE){
-            $strJsonFileContents = file_get_contents(__DIR__ . "/cities.json");
+            $strJsonFileContents = file_get_contents("/var/www/app/jsons/cities.json");
             $citiesArray = json_decode($strJsonFileContents, true);
 
             $response = $this->entity
@@ -76,7 +76,7 @@ class CityController extends Controller
         $data = $request->validated();
 
         if($this->validatorIBGE($data['name'], $data['state']) === TRUE ){
-            $strJsonFileContents = file_get_contents(__DIR__ . "/cities.json");
+            $strJsonFileContents = file_get_contents("/var/www/app/jsons/cities.json");
             $citiesArray = json_decode($strJsonFileContents, true);
 
             $city = $this->findCity($id);
