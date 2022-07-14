@@ -11,7 +11,7 @@ class CityFactory extends Factory
     {
         $faker = \Faker\Factory::create('pt_BR');
 
-        $path = 'app/Http/Controllers/cities.json';
+        $path = 'cities.json';
 
         $strJsonFileContents = file_get_contents($path);
         $citiesArray = json_decode($strJsonFileContents, true);
