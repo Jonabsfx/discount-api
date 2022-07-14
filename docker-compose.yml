@@ -5,6 +5,9 @@ services:
     api:
         container_name: laravel
         build:
+            args:
+                user: jonabsfx
+                uid: 1918
             context: .
             dockerfile: Dockerfile
         image: jonabsfx:laravel-app
@@ -49,8 +52,10 @@ services:
 
     # queue
     queue:
-        container_name: queue
-        image: jonabsfx:laravel-app
+        build:
+            args:
+                user: jonabsfx
+                uid: 1918
         restart: unless-stopped
         command: "php artisan queue:work"
         volumes:
